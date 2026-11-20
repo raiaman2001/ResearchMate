@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResearchMate — 3D Research Command Deck</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css?v=8">
+  <link rel="stylesheet" href="css/base.css?v=8">
+  <link rel="stylesheet" href="css/layout.css?v=8">
+  <link rel="stylesheet" href="css/panels.css?v=8">
+  <link rel="stylesheet" href="css/views.css?v=8">
+
+  <!-- Import Map for Three.js pinned CDN modules -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+      "three/examples/jsm/renderers/CSS3DRenderer.js": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/renderers/CSS3DRenderer.js"
+    }
+  }
+  </script>
+
+  <!-- Marked and DOMPurify CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+</head>
+<body>
+  
+  <!-- Layer 1: Fullscreen Three.js WebGL Canvas (Starfield, Globe, Particles) -->
+  <canvas id="canvas-webgl"></canvas>
+
+  <!-- Top Command Deck HUD Navigation -->
+  <header class="command-deck-navbar">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="/" class="brand">
+        <img src="assets/logo.svg" alt="Logo" class="brand-icon">
+        <span>ResearchMate</span>
+      </a>
+      <div style="display:flex; gap:6px; margin-left:12px;">
+        <button class="btn btn-primary btn-sm" id="btn-start-research" style="box-shadow: 0 0 12px var(--accent-glow);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>Start Research</span>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="nav-report-btn">📄 Report</button>
+      </div>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:8px;">
+      <!-- Export Actions (Shown only in Report View) -->
+      <div id="report-export-group" style="display:none; align-items:center; gap:6px;">
+        <button class="btn btn-ghost btn-sm" id="btn-copy-report" title="Copy report text" disabled>Copy</button>
+        <button class="btn btn-ghost btn-sm" id="btn-export-md" title="Download Markdown" disabled>Markdown</button>
+        <button class="btn btn-ghost btn-sm" id="btn-export-pdf" title="Download PDF" disabled>PDF</button>
+        <button class="btn btn-ghost btn-sm" id="btn-export-docx" title="Download Word DOCX" disabled>Word</button>
+        <div style="width:1px; height:18px; background:var(--border-subtle); margin:0 4px;"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Clean Idle State Caption & Floating AI Research Cards -->
+  <div id="globe-idle-caption" class="globe-caption">
+    <h2>Autonomous Deep Research System</h2>
+  </div>
+
+  <!-- Left Floating Cards (3 stacked) -->
+  <div id="floating-cards-left" class="floating-cards-col floating-cards-left">
+    <div class="floating-research-card glass-panel">
+      <div class="card-icon">⚡</div>
+      <div class="card-content">
+        <h4>Autonomous Web Research</h4>
+        <p>Multiple AI agents search, browse, and analyze dozens of live websites simultaneously, saving hours of manual reading.</p>
+      </div>
+    </div>
+    <div class="floating-research-card glass-panel">
+      <div class="card-icon">🛡️</div>
+      <div class="card-content">
+        <h4>Evidence Verification</h4>
+        <p>Every claim is fact-checked against original sources with direct citations, preventing hallucinations and false claims.</p>
+      </div>
+    </div>
+    <div class="floating-research-card glass-panel">
+      <div class="card-icon">⚖️</div>
+      <div class="card-content">
+        <h4>Objective Debate Analysis</h4>
+        <p>Evaluates both supporting and opposing perspectives on complex questions to help you make balanced, informed decisions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Floating Cards (3 stacked) -->
+  <div id="floating-cards-right" class="floating-cards-col floating-cards-right">
+    <div class="floating-research-card glass-panel">
+      <div class="card-icon">🎯</div>
+      <div class="card-content">
+        <h4>Real-World Problem Solving</h4>
+        <p>Helps founders, analysts, and students quickly solve complex questions in technology, business, and policy.</p>
+      </div>
+    </div>
+    <div class="floating-research-card glass-panel">
+      <div class="card-icon">🔍</div>
+      <div class="card-content">
+        <h4>Contradiction Detection</h4>
+        <p>Automatically flags when different sources report conflicting numbers or findings, highlighting discrepancies clearly.</p>
+      </div>
+    </div>
+    <div class="floating-research-card glass-panel">
+      <div class="card-icon">📑</div>
+      <div class="card-content">
+        <h4>Exportable Research Reports</h4>
+        <p>Synthesizes findings into structured dossiers with executive summaries, ready to download as Word, PDF, or Markdown.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layer 2: CSS3DRenderer Container (Houses Real DOM Glass Panels in 3D Space) -->
+  <div id="css3d-container">
+    
+    <!-- PANEL 1: IDLE COMPOSER (Centered in 3D) -->
+    <div id="panel-composer" class="deck-panel glass-panel panel-idle-hidden" tabindex="-1">
+      <div class="panel-body">
+        <div class="composer-hero">
+          <h1>Autonomous Deep Research System</h1>
+          <p style="font-size:13px; color:var(--text-secondary);">Command multi-agent factual synthesis with verified citation proofs</p>
+        </div>
+
+        <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:16px;">
+          <textarea class="composer-textarea" id="composer-textarea" placeholder="Enter deep research inquiry... (e.g. What is the commercial outlook for solid-state batteries by 2030?)"></textarea>
+          
+          <div class="composer-controls-grid">
+            <select class="select" id="mode-select">
+              <option value="standard">Standard Balanced Research</option>
+              <option value="debate">Debate Mode (PRO vs CON)</option>
+            </select>
+            <select class="select" id="lang-select">
+              <option value="auto">Auto-detect Language</option>
+              <option value="en">English</option>
+              <option value="hi">हिंदी (Hindi)</option>
+              <option value="hinglish">Hinglish</option>
+            </select>
+            <select class="select" id="model-select">
+              <option value="qwen/qwen3.8-27b">Groq Qwen 2.5 (Fastest)</option>
+              <option value="gemini/gemini-2.5-flash">Google Gemini 2.5</option>
+              <option value="claude-sonnet-5-5">Anthropic Claude Sonnet</option>
+            </select>
+          </div>
+
+          <div class="composer-actions-row">
+            <div class="composer-toggles">
+              <label class="switch">
+                <input type="checkbox" id="toggle-approval" checked>
+                <span class="switch-slider"></span>
+                <span>Plan Approval</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" id="toggle-memory" checked>
+                <span class="switch-slider"></span>
+                <span>Memory</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" id="toggle-docs">
+                <span class="switch-slider"></span>
+                <span>PDF Docs</span>
+              </label>
+            </div>
+            <button class="btn btn-primary btn-lg" id="btn-submit-research">
+              Launch Research
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="prompt-chips">
+          <span style="font-size:13px; font-weight:600; color:var(--text-muted);">Try:</span>
+          <div class="chip">Commercial viability of solid-state EV batteries by 2030</div>
+          <div class="chip">Nuclear fusion economics vs utility solar + battery storage</div>
+          <div class="chip">India me EV market ka future kaisa hoga?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: FLOATING LEFT (History + PDFs) -->
+    <div id="panel-history" class="deck-panel glass-panel panel-idle-hidden" tabindex="-1">
+      <div class="panel-header">
+        <span class="panel-title">📚 Research Archives</span>
+      </div>
+      <div class="panel-body" style="overflow-y:auto; display:flex; flex-direction:column; gap:12px;">
+        <div id="history-list"></div>
+        <div style="border-top:1px solid var(--border-subtle); padding-top:10px;">
+          <div style="font-size:12px; font-weight:600; color:var(--text-muted); margin-bottom:6px;">LOCAL PDF VAULT</div>
+          <div class="upload-dropzone" id="pdf-dropzone">
+            <span style="font-size:13px;">Drop PDF or click to ingest</span>
+          </div>
+          <input type="file" id="doc-file-input" accept=".pdf" style="display:none;" />
+          <div id="docs-list" style="margin-top:8px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: FLOATING RIGHT (Live Stats) -->
+    <div id="panel-telemetry" class="deck-panel glass-panel panel-idle-hidden" tabindex="-1">
+      <div class="panel-header">
+        <span class="panel-title">⚡ Live Stats</span>
+      </div>
+      <div class="panel-body" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div class="glass-panel" style="padding:10px;">
+          <div style="font-size:12px; color:var(--text-muted);">Tokens</div>
+          <div style="font-size:18px; font-weight:700;" id="stat-tokens">—</div>
+        </div>
+        <div class="glass-panel" style="padding:10px;">
+          <div style="font-size:12px; color:var(--text-muted);">Cost (USD)</div>
+          <div style="font-size:18px; font-weight:700; color:var(--accent-secondary);" id="stat-cost">—</div>
+        </div>
+        <div class="glass-panel" style="padding:10px;">
+          <div style="font-size:12px; color:var(--text-muted);">Elapsed</div>
+          <div style="font-size:18px; font-weight:700;" id="stat-elapsed">—</div>
+        </div>
+        <div class="glass-panel" style="padding:10px;">
+          <div style="font-size:12px; color:var(--text-muted);">Verified</div>
+          <div style="font-size:18px; font-weight:700; color:var(--color-success);" id="stat-verified">—</div>
+        </div>
+        <div class="glass-panel" style="padding:10px;">
+          <div style="font-size:12px; color:var(--text-muted);">Sources</div>
+          <div style="font-size:18px; font-weight:700;" id="stat-sources">—</div>
+        </div>
+        <div class="glass-panel" style="padding:10px;">
+          <div style="font-size:12px; color:var(--text-muted);">Confidence</div>
+          <div style="font-size:18px; font-weight:700; color:var(--accent-primary);" id="stat-confidence">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 4: RUNNING TRACE PANEL -->
+    <div id="panel-trace" class="deck-panel glass-panel">
+      <div class="panel-header">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span class="panel-title">🛰️ Multi-Agent Live Execution Stream</span>
+          <div id="trace-timer-hud" class="trace-timer-badge">
+            <span class="timer-dot"></span>
+            <span style="color:var(--text-muted); font-size:12px;">ETA:</span>
+            <strong id="trace-eta-val" style="color:var(--accent-secondary); font-family:var(--font-mono); font-size:13px;">~25s</strong>
+            <span style="color:var(--text-muted); font-size:11px; margin-left:4px;">(<span id="trace-percent-val">15%</span>)</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-ghost btn-sm" id="btn-pause-scroll">Pause</button>
+          <button class="btn btn-danger btn-sm" id="btn-cancel-research">Cancel</button>
+        </div>
+      </div>
+      <div class="trace-events-list" id="trace-events-list"></div>
+    </div>
+
+    <!-- PANEL 5: REPORT DECK -->
+    <div id="panel-report" class="deck-panel">
+      <div class="report-panel-inner" id="report-panel-inner">
+        <!-- Column 1: TOC Column (230px) -->
+        <aside class="report-col-toc" id="report-col-toc">
+          <div class="report-toc-sticky">
+            <div class="toc-header">
+              <span class="toc-header-title">Contents</span>
+            </div>
+            <nav class="toc-nav" id="toc-nav">
+              <ul class="toc-list" id="toc-list"></ul>
+            </nav>
+          </div>
+        </aside>
+
+        <!-- Column 2: Main Report Column (1fr, max 820px) -->
+        <main class="report-col-main" id="report-col-main">
+          <!-- Report Header Banner with 5-stat summary bar -->
+          <header class="report-header-banner" id="report-header-banner"></header>
+
+          <!-- Debate verdict container if applicable -->
+          <div id="report-debate-section"></div>
+
+          <!-- Parsed Markdown Prose with overflow-safe tables -->
+          <article class="report-prose" id="report-prose"></article>
+        </main>
+
+        <!-- Column 3: Side Panel (320px) -->
+        <aside class="report-col-side" id="report-col-side">
+          <div class="report-side-sticky">
+            <div class="side-panel-header">
+              <div class="side-panel-tabs-bar" id="side-panel-tabs-bar">
+                <button class="side-tab-btn active" data-side-tab="sources" id="tab-btn-sources">
+                  Sources <span class="tab-count" id="count-sources">0</span>
+                </button>
+                <button class="side-tab-btn" data-side-tab="contradictions" id="tab-btn-conflicts">
+                  Contradictions <span class="tab-count" id="count-contradictions">0</span>
+                </button>
+                <button class="side-tab-btn" data-side-tab="verification" id="tab-btn-verification">
+                  Verification <span class="tab-count" id="count-verification">0</span>
+                </button>
+              </div>
+              <button class="side-panel-close-btn" id="btn-close-side-panel" aria-label="Close side panel">✕</button>
+            </div>
+            <div class="side-panel-content">
+              <div class="side-tab-pane active" id="tab-sources-content"></div>
+              <div class="side-tab-pane" id="tab-conflicts-content" style="display:none;"></div>
+              <div class="side-tab-pane" id="tab-verification-content" style="display:none;"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Decision Modal: Scraped Intelligence Review & Mode Selection (Phase 2) -->
+  <div class="modal-overlay" id="decision-modal">
+    <div class="modal-container glass-panel" style="width:720px; max-width:92vw; padding:24px; max-height:88vh; display:flex; flex-direction:column;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:12px; margin-bottom:14px;">
+        <div>
+          <h3 style="font-size:18px; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px;">
+            <span>🔍</span> Scraped Intelligence & Decision Gate
+          </h3>
+          <p style="font-size:12.5px; color:var(--text-secondary); margin-top:2px;">
+            Zero-API Web Scrape complete. Review gathered sources below and choose how to proceed:
+          </p>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="btn-close-decision">✕</button>
+      </div>
+
+      <!-- Scraped Sources & Excerpts List -->
+      <div id="decision-sources-list" style="flex:1 1 auto; max-height:48vh; overflow-y:auto; overflow-x:hidden; padding-right:8px; display:flex; flex-direction:column; gap:12px; margin-bottom:16px;"></div>
+
+      <!-- User Action Selection: API vs Manual -->
+      <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:14px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:240px;">
+          <div style="font-size:13.5px; font-weight:600; color:var(--text-primary);">Decision: Complete with AI or Write Manually?</div>
+          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">
+            Option A uses API to synthesize and fact-check. Option B exports raw dossier for free manual writing.
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <!-- Format Picker Dropdown for Manual Export -->
+          <div style="display:flex; align-items:center; gap:6px; background:var(--bg-base); padding:4px 8px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <label for="export-format-select" style="font-size:12px; color:var(--text-muted); font-weight:500;">Format:</label>
+            <select id="export-format-select" style="background:transparent; color:#fff; border:none; font-size:12.5px; outline:none; cursor:pointer;">
+              <option value="pdf" style="background:#13151b; color:#fff;">PDF (.pdf)</option>
+              <option value="docx" style="background:#13151b; color:#fff;">Word (.docx)</option>
+              <option value="md" style="background:#13151b; color:#fff;">Markdown (.md)</option>
+            </select>
+          </div>
+          <button class="btn btn-secondary" id="btn-decision-manual" style="border-color:var(--accent-secondary);">
+            📥 Export Dossier (Free)
+          </button>
+          <button class="btn btn-primary" id="btn-decision-ai" style="box-shadow: 0 0 14px var(--accent-glow);">
+            🤖 Complete via AI (API Mode)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plan Approval Modal -->
+  <div class="modal-overlay" id="plan-modal">
+    <div class="modal-container glass-panel" style="width:580px; padding:20px;">
+      <h3 style="font-size:16px; margin-bottom:12px;">Approve Agent Research Angles</h3>
+      <div id="plan-questions-list" style="max-height:280px; overflow-y:auto; margin-bottom:16px;"></div>
+      <div style="display:flex; justify-content:flex-end;">
+        <button class="btn btn-primary" id="btn-approve-plan">Confirm Angles & Run Agents</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Fullscreen Research Searching Overlay with Dynamic Progress and Estimated Time -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-modal-box glass-panel">
+      <div class="search-spinner-ring"></div>
+      <div class="search-status-title" id="search-status-title">Searching...</div>
+      <div class="search-sub-status" id="search-sub-status">Deploying multi-agent web researchers</div>
+      
+      <!-- Progress Bar -->
+      <div class="search-progress-track">
+        <div class="search-progress-fill" id="search-progress-fill"></div>
+      </div>
+      
+      <!-- Metrics: Percentage & Time Estimation -->
+      <div class="search-metrics-row">
+        <span class="search-metric-badge">
+          <span style="color:var(--text-muted);">Progress:</span> 
+          <strong id="search-percent-text">15%</strong>
+        </span>
+        <span class="search-metric-badge">
+          <span style="color:var(--text-muted);">Estimated:</span> 
+          <strong id="search-eta-text">~25s remaining</strong>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="js/app.js?v=11"></script>
+</body>
+</html>

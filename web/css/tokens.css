@@ -1,0 +1,100 @@
+:root {
+  /* 3D Research Command Deck Palette */
+  --bg-app: #070A12;
+  --bg-canvas: #04060B;
+  --bg-surface: rgba(18, 22, 31, 0.65);
+  --bg-surface-elevated: rgba(24, 29, 41, 0.75);
+  --bg-surface-hover: rgba(30, 36, 51, 0.85);
+  --bg-surface-active: rgba(37, 45, 63, 0.9);
+
+  --border-subtle: rgba(28, 34, 48, 0.8);
+  --border-default: rgba(124, 131, 255, 0.22);
+  --border-gradient: linear-gradient(135deg, rgba(124, 131, 255, 0.4), rgba(20, 184, 166, 0.2));
+  --border-hover: rgba(124, 131, 255, 0.5);
+  --border-focus: #7C83FF;
+
+  --text-primary: #F0F4FC;
+  --text-secondary: #9DA8BE;
+  --text-muted: #5C677D;
+  --text-inverse: #070A12;
+
+  --accent-primary: #7C83FF;
+  --accent-primary-hover: #6971FA;
+  --accent-primary-subtle: rgba(124, 131, 255, 0.15);
+  --accent-glow: rgba(124, 131, 255, 0.35);
+
+  --accent-secondary: #14B8A6; /* Teal */
+  --accent-secondary-subtle: rgba(20, 184, 166, 0.15);
+
+  --color-success: #10B981;
+  --color-success-subtle: rgba(16, 185, 129, 0.15);
+  --color-warning: #F59E0B;
+  --color-warning-subtle: rgba(245, 158, 11, 0.15);
+  --color-danger: #EF4444;
+  --color-danger-subtle: rgba(239, 68, 68, 0.15);
+
+  /* Typography scale - Minimum 12-13px, body 14-15px, titles 16-18px+ */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --text-xs: 0.8125rem;   /* 13px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 0.9375rem; /* 15px */
+  --text-md: 1.0625rem;   /* 17px */
+  --text-lg: 1.25rem;     /* 20px */
+  --text-xl: 1.5rem;      /* 24px */
+  --text-2xl: 1.875rem;   /* 30px */
+
+  /* 8px Spacing Grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Radius & Glass Effects */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --glass-blur: blur(12px);
+  --shadow-panel: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 1px rgba(124, 131, 255, 0.3);
+  --shadow-glow: 0 0 24px var(--accent-glow);
+
+  --transition-ui: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --camera-flight-duration: 1000ms;
+}
+
+[data-theme="light"] {
+  --bg-app: #F4F6FB;
+  --bg-canvas: #E2E8F0;
+  --bg-surface: rgba(255, 255, 255, 0.75);
+  --bg-surface-elevated: rgba(241, 245, 249, 0.85);
+  --bg-surface-hover: rgba(226, 232, 240, 0.9);
+  --bg-surface-active: #CBD5E1;
+
+  --border-subtle: rgba(203, 213, 225, 0.8);
+  --border-default: rgba(99, 102, 241, 0.3);
+  --border-hover: rgba(99, 102, 241, 0.6);
+  --border-focus: #6366F1;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --text-inverse: #FFFFFF;
+
+  --accent-primary: #6366F1;
+  --accent-primary-hover: #4F46E5;
+  --accent-primary-subtle: rgba(99, 102, 241, 0.12);
+  --accent-glow: rgba(99, 102, 241, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-ui: 0.01ms !important;
+    --camera-flight-duration: 0.01ms !important;
+  }
+}

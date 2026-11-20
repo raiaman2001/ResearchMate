@@ -1,0 +1,562 @@
+[
+ {
+  "id": "q01",
+  "query": "India's renewable energy capacity targets for 2030",
+  "lang": "en",
+  "debatable": false,
+  "group": "m1",
+  "role": "seed",
+  "aspects": [
+   "The official 2030 non-fossil capacity target (about 500 GW)",
+   "Current installed renewable capacity or progress so far",
+   "Main schemes or policies driving the growth",
+   "Key challenges such as grid integration, land or financing"
+  ]
+ },
+ {
+  "id": "q02",
+  "query": "Solar versus wind: which is driving India's renewable energy growth?",
+  "lang": "en",
+  "debatable": false,
+  "group": "m1",
+  "role": "followup",
+  "aspects": [
+   "Relative installed capacity of solar and wind",
+   "Growth trend of each source",
+   "Reasons solar is growing faster (costs, auctions, rooftop)",
+   "Constraints for wind such as sites or land"
+  ]
+ },
+ {
+  "id": "q03",
+  "query": "UPI digital payments adoption in India: key statistics",
+  "lang": "en",
+  "debatable": false,
+  "group": "m2",
+  "role": "seed",
+  "aspects": [
+   "Monthly transaction volume or value figures",
+   "Growth over recent years",
+   "Share of digital payments in overall retail payments",
+   "Who regulates and operates UPI (NPCI)"
+  ]
+ },
+ {
+  "id": "q04",
+  "query": "UPI transaction charges and the MDR debate: what is the current policy?",
+  "lang": "en",
+  "debatable": false,
+  "group": "m2",
+  "role": "followup",
+  "aspects": [
+   "Whether the UPI merchant discount rate is currently zero",
+   "Government reasoning or subsidy for zero MDR",
+   "Concerns of banks and payment providers about costs",
+   "Proposals or recent changes in charges"
+  ]
+ },
+ {
+  "id": "q05",
+  "query": "Impact of remote work on employee productivity",
+  "lang": "en",
+  "debatable": false,
+  "group": "m3",
+  "role": "seed",
+  "aspects": [
+   "Evidence from studies on productivity changes",
+   "Differences by job type or hybrid versus fully remote",
+   "Employer concerns or monitoring",
+   "Employee-reported benefits such as commute time saved"
+  ]
+ },
+ {
+  "id": "q06",
+  "query": "Remote work and employee mental health",
+  "lang": "en",
+  "debatable": false,
+  "group": "m3",
+  "role": "followup",
+  "aspects": [
+   "Isolation or loneliness risks",
+   "Work-life balance effects",
+   "Benefits such as flexibility and reduced stress",
+   "Role of employer support or boundaries"
+  ]
+ },
+ {
+  "id": "q07",
+  "query": "Current state of semiconductor manufacturing in India",
+  "lang": "en",
+  "debatable": false,
+  "group": "m4",
+  "role": "seed",
+  "aspects": [
+   "Major announced fabs or OSAT plants",
+   "Government incentive scheme (India Semiconductor Mission)",
+   "Key companies involved",
+   "Challenges such as talent, water and ecosystem"
+  ]
+ },
+ {
+  "id": "q08",
+  "query": "India Semiconductor Mission incentives and approved projects",
+  "lang": "en",
+  "debatable": false,
+  "group": "m4",
+  "role": "followup",
+  "aspects": [
+   "Share of project cost the government supports",
+   "Names of approved projects or companies",
+   "Timeline or status of construction",
+   "Scale of total investment or outlay"
+  ]
+ },
+ {
+  "id": "q09",
+  "query": "India me electric vehicle market ka size aur growth",
+  "lang": "hinglish",
+  "debatable": false,
+  "group": "m5",
+  "role": "seed",
+  "aspects": [
+   "Market size or sales numbers",
+   "Growth rate over recent years",
+   "Two-wheeler versus four-wheeler segments",
+   "Government support such as FAME or PLI"
+  ]
+ },
+ {
+  "id": "q10",
+  "query": "India me EV charging infrastructure ki current halat kaisi hai?",
+  "lang": "hinglish",
+  "debatable": false,
+  "group": "m5",
+  "role": "followup",
+  "aspects": [
+   "Number of public charging stations",
+   "Distribution across cities versus highways",
+   "Government schemes for charging",
+   "Main gaps such as rural areas or charger reliability"
+  ]
+ },
+ {
+  "id": "q11",
+  "query": "भारत में कृषि के लिए ड्रोन तकनीक का उपयोग",
+  "lang": "hi",
+  "debatable": false,
+  "group": "m6",
+  "role": "seed",
+  "aspects": [
+   "Uses such as spraying and crop monitoring",
+   "Government support or subsidies for agricultural drones",
+   "Benefits such as saving time, water and pesticide",
+   "Challenges such as cost, regulation and skills"
+  ]
+ },
+ {
+  "id": "q12",
+  "query": "भारत में ड्रोन दीदी योजना क्या है और इसके लाभ क्या हैं?",
+  "lang": "hi",
+  "debatable": false,
+  "group": "m6",
+  "role": "followup",
+  "aspects": [
+   "What the scheme is and who it targets (women self-help groups)",
+   "Training or drone provision details",
+   "Income or livelihood benefits",
+   "Scale or number of drones or beneficiaries planned"
+  ]
+ },
+ {
+  "id": "q13",
+  "query": "Is nuclear power a good option for India's energy future?",
+  "lang": "en",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Benefits: low-carbon reliable baseload power",
+   "Costs, construction delays and financing",
+   "Safety, waste and public acceptance concerns",
+   "India's current nuclear capacity or expansion plans"
+  ]
+ },
+ {
+  "id": "q14",
+  "query": "Should India ban cryptocurrency or regulate it?",
+  "lang": "en",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Arguments for a ban (fraud, financial stability)",
+   "Arguments for regulation (innovation, investor protection)",
+   "India's current tax or regulatory stance",
+   "International approaches for comparison"
+  ]
+ },
+ {
+  "id": "q15",
+  "query": "Is remote work better than office work for productivity?",
+  "lang": "en",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Evidence that remote work improves productivity",
+   "Evidence that office work helps collaboration or productivity",
+   "Role of hybrid arrangements",
+   "Factors such as job type or management"
+  ]
+ },
+ {
+  "id": "q16",
+  "query": "Does social media harm teenage mental health?",
+  "lang": "en",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Evidence linking social media to anxiety or depression",
+   "Studies finding small or no effect",
+   "Moderating factors such as type and amount of use",
+   "Policy or parental measures"
+  ]
+ },
+ {
+  "id": "q17",
+  "query": "Is intermittent fasting effective for weight loss?",
+  "lang": "en",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Evidence that it helps weight loss",
+   "Comparison with ordinary calorie restriction",
+   "Possible risks or who should avoid it",
+   "Sustainability and adherence"
+  ]
+ },
+ {
+  "id": "q18",
+  "query": "Are electric vehicles really better for the environment than petrol cars in India?",
+  "lang": "en",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Lifecycle emissions comparison",
+   "Impact of India's coal-heavy electricity grid",
+   "Battery manufacturing and disposal concerns",
+   "Local air quality benefits"
+  ]
+ },
+ {
+  "id": "q19",
+  "query": "Should India adopt a four-day work week?",
+  "lang": "en",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Trial results on productivity and wellbeing",
+   "Concerns for sectors needing continuous operation",
+   "Labour law or legal considerations in India",
+   "Cost or business impact arguments"
+  ]
+ },
+ {
+  "id": "q20",
+  "query": "Will AI create more jobs than it destroys?",
+  "lang": "en",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Jobs at risk of automation",
+   "New roles or industries created",
+   "Estimates from major forecasts",
+   "Skills transition and policy responses"
+  ]
+ },
+ {
+  "id": "q21",
+  "query": "Kya AI developers ki naukriyan khatam kar dega?",
+  "lang": "hinglish",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Impact of AI coding tools on developer productivity",
+   "Evidence or forecasts about job displacement",
+   "Skills that remain valuable",
+   "Views from industry or studies"
+  ]
+ },
+ {
+  "id": "q22",
+  "query": "Kya online education classroom padhai se behtar hai?",
+  "lang": "hinglish",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Learning outcome evidence for online versus classroom",
+   "Access and digital divide issues in India",
+   "Flexibility and cost benefits",
+   "Blended learning as a middle path"
+  ]
+ },
+ {
+  "id": "q23",
+  "query": "क्या भारत में परमाणु ऊर्जा का विस्तार करना सही है?",
+  "lang": "hi",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Benefits such as clean and reliable power",
+   "Cost, delay and safety concerns",
+   "Current capacity and expansion plans",
+   "Comparison with renewable alternatives"
+  ]
+ },
+ {
+  "id": "q24",
+  "query": "क्या स्कूलों में मोबाइल फोन पर प्रतिबंध लगाना चाहिए?",
+  "lang": "hi",
+  "debatable": true,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Arguments for a ban (distraction, wellbeing)",
+   "Arguments against (safety, learning tools)",
+   "Evidence from schools or countries that tried bans",
+   "Practical middle options or policies"
+  ]
+ },
+ {
+  "id": "q25",
+  "query": "How effective are large language models at coding tasks?",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Benchmark performance on code generation",
+   "Productivity effects reported by developers",
+   "Limitations such as bugs, invented APIs and security",
+   "Role of human review"
+  ]
+ },
+ {
+  "id": "q26",
+  "query": "India startup funding trends in the last two years",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Overall funding amount trend",
+   "Sectors attracting or losing funding",
+   "Impact of the global funding slowdown",
+   "Number of unicorns or new startups"
+  ]
+ },
+ {
+  "id": "q27",
+  "query": "Impact of the GST on small businesses in India",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Compliance burden and costs",
+   "Benefits such as a unified market or input tax credit",
+   "Threshold or composition scheme for small firms",
+   "Reported problems or reforms"
+  ]
+ },
+ {
+  "id": "q28",
+  "query": "What is India's National Quantum Mission and what are its goals?",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Launch details and budget outlay",
+   "Technical goals such as qubit targets",
+   "Focus areas (computing, communication, sensing)",
+   "Institutions or hubs involved"
+  ]
+ },
+ {
+  "id": "q29",
+  "query": "How does the Aadhaar system work and what are its privacy concerns?",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Biometric and demographic enrolment and authentication",
+   "Uses in welfare and services",
+   "Privacy and data security criticisms",
+   "Supreme Court judgment or legal safeguards"
+  ]
+ },
+ {
+  "id": "q30",
+  "query": "Current status of 5G rollout in India",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Operators and coverage reach",
+   "Launch timeline and spectrum auctions",
+   "Adoption or subscriber numbers",
+   "Challenges such as device affordability or monetisation"
+  ]
+ },
+ {
+  "id": "q31",
+  "query": "India's space programme: recent ISRO missions and achievements",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Chandrayaan lunar missions",
+   "Other recent launches (Aditya-L1, Gaganyaan progress)",
+   "Commercial launches or private sector role",
+   "Cost-efficiency or global standing"
+  ]
+ },
+ {
+  "id": "q32",
+  "query": "Causes and effects of air pollution in Delhi NCR",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Main sources (vehicles, stubble burning, construction, industry)",
+   "Seasonal factors and meteorology",
+   "Health effects",
+   "Policy measures such as GRAP or odd-even"
+  ]
+ },
+ {
+  "id": "q33",
+  "query": "Latest trends in India's IT services exports",
+  "lang": "en",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Export revenue size and growth",
+   "Major companies or hubs",
+   "Impact of AI and global demand slowdown",
+   "Shift to digital or global capability centre models"
+  ]
+ },
+ {
+  "id": "q34",
+  "query": "Monsoon India ki economy aur agriculture ko kaise affect karta hai?",
+  "lang": "hinglish",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Share of agriculture dependent on monsoon",
+   "Impact on crop output and food prices",
+   "Effect on rural demand and GDP",
+   "Irrigation or climate resilience measures"
+  ]
+ },
+ {
+  "id": "q35",
+  "query": "Digital rupee (CBDC) kya hai aur kaise kaam karta hai?",
+  "lang": "hinglish",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Definition of e-rupee as RBI-issued digital currency",
+   "Retail versus wholesale pilots",
+   "Difference from UPI and cryptocurrency",
+   "Benefits and concerns"
+  ]
+ },
+ {
+  "id": "q36",
+  "query": "India me startups ke liye funding kaise milti hai?",
+  "lang": "hinglish",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Funding stages (angel, seed, venture capital)",
+   "Government schemes such as the Startup India fund of funds",
+   "Alternatives such as bank loans or grants",
+   "Role of incubators and accelerators"
+  ]
+ },
+ {
+  "id": "q37",
+  "query": "भारत में मानसून का कृषि पर प्रभाव",
+  "lang": "hi",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Dependence of farming on monsoon rainfall",
+   "Effect on kharif crops and output",
+   "Impact on prices and rural income",
+   "Irrigation and mitigation measures"
+  ]
+ },
+ {
+  "id": "q38",
+  "query": "आयुष्मान भारत योजना क्या है और इसके लाभ क्या हैं?",
+  "lang": "hi",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Health insurance cover amount per family",
+   "Eligible beneficiaries",
+   "Number of hospitals or people covered",
+   "Criticisms or implementation challenges"
+  ]
+ },
+ {
+  "id": "q39",
+  "query": "भारत में 5G सेवाओं की वर्तमान स्थिति",
+  "lang": "hi",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Coverage of cities and operators",
+   "Launch timeline",
+   "Number of users or adoption",
+   "Challenges and costs"
+  ]
+ },
+ {
+  "id": "q40",
+  "query": "चंद्रयान-3 मिशन की प्रमुख उपलब्धियाँ",
+  "lang": "hi",
+  "debatable": false,
+  "group": null,
+  "role": null,
+  "aspects": [
+   "Successful soft landing near the lunar south pole",
+   "Date of landing and India's position among nations",
+   "Scientific findings from the Pragyan rover or Vikram lander",
+   "Cost or technical significance"
+  ]
+ }
+]
